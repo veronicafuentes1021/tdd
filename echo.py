@@ -6,18 +6,37 @@ __author__ = "Veronica Fuentes"
 
 
 import sys
+import argparse
 
 
 def create_parser():
     """Returns an instance of argparse.ArgumentParser"""
-    # your code here
-    return
+    parser = argparse.ArgumentParser(description="Process input text.")
+    parser.add_argument(
+        '-u', '--upper', action='store_true', help='convert text to uppercase')
+    parser.add_argument(
+        '-l', '--lower', action='store_true', help='convert text to lowercase')
+    parser.add_argument(
+        '-t', '--title', action='store_true', help='convert text to titlecase')
+    parser.add_argument(
+        'txt', help='words input')
+    if not sys.argv:
+        parser.print_usage()
+    return parser
 
 
 def main(args):
     """Implementation of echo"""
-    # your code here
-    return
+    parser = create_parser()
+    args = parser.parse_args()
+    if args.upper:
+        print(args.txt.upper())
+    elif args.lower:
+        print(args.txt.lower())
+    elif args.title:
+        print(args.txt.title())
+    else:
+        print(args.txt)
 
 
 if __name__ == '__main__':

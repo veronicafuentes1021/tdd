@@ -29,12 +29,12 @@ def main(args):
     """Implementation of echo"""
     parser = create_parser()
     args = parser.parse_args()
-    if args.upper:
-        print(args.txt.upper())
+    if args.title:
+        print(args.txt.title())
     elif args.lower:
         print(args.txt.lower())
-    elif args.title:
-        print(args.txt.title())
+    elif args.upper:
+        print(args.txt.upper())
     else:
         print(args.txt)
 

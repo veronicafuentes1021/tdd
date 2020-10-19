@@ -14,7 +14,6 @@ import importlib
 import argparse
 import unittest
 import subprocess
-import create_parser
 
 # devs: change this to 'soln.echo' to run this suite against the solution
 PKG_NAME = 'echo'
@@ -69,10 +68,9 @@ class TestEcho(unittest.TestCase):
     # - Does it understand `--lower` ? or `--title` ?
     # - If you enable one option as true, are the rest false?
     #
-    # def test_parser_namespace(self):
-    #     args = create_parser()
-    #     output = run_capture(self.module.__file__, args)
-    #     self.assertEqual(args, output)
+    def test_parser_namespace(self):
+        module_to_test = self.module.__file__
+        run_capture(module_to_test)
 
     def test_echo(self):
         """Check if main() function prints anything at all"""
@@ -122,10 +120,10 @@ class TestEcho(unittest.TestCase):
     def test_multiple_options(self):
         args = ["-tul", "Hello World"]
         output = run_capture(self.module.__file__, args)
-        self.assertEqual(output[0], "hello world")
+        self.assertEqual(output[0], "Hello World")
         args1 = ["-ul", "hello world"]
-        output = run_capture(self.module.__file__, args1)
-        self.assertEqual(output[0], "hello world")
+        output1 = run_capture(self.module.__file__, args1)
+        self.assertEqual(output1[0], "hello world")
 
     def test_help_message(self):
         output = run_capture(self.module.__file__, "-h")
